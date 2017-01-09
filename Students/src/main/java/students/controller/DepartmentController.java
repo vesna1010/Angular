@@ -8,36 +8,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import students.model.Course;
-import students.service.CourseService;
+import students.model.Department;
+import students.service.DepartmentService;
+
 
 @RestController
-public class CourseController {
+public class DepartmentController {
 
 	@Autowired
-	public CourseService courseService;
+	public DepartmentService departmentService;
 	
-	@RequestMapping("/getCourses")
-	public List<Course> getCourses() {
-		return courseService.getCourses();
+	@RequestMapping("/getDepartments")
+	public List<Department> getCourses() {
+		return departmentService.getDepartments();
 	}
 	
-	@RequestMapping("/getCourseById")
-	public Course getCourseById(@RequestParam("id") long id) {
-		return courseService.getCourseById(id);
+	@RequestMapping("/getDepartmentById")
+	public Department getCourseById(@RequestParam("id") long id) {
+		return departmentService.getDepartmentById(id);
 	}
 	
-	@RequestMapping("/deleteCourseById")
-	public List<Course> deleteCourseById(@RequestParam("id") long id) {
-		 courseService.deleteCourse(id);
-		 return courseService.getCourses();
+	@RequestMapping("/deleteDepartmentById")
+	public List<Department> deleteCourseById(@RequestParam("id") long id) {
+		 departmentService.deleteDepartment(id);
+		 return departmentService.getDepartments();
 	}
 	
-	@RequestMapping(value="/saveCourse", method=RequestMethod.POST, 
+	@RequestMapping(value="/saveDepartment", method=RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteCourseById(@RequestBody Course course){
-		courseService.saveOrUpdateCourse(course);
-		return "Course has been successfully saved!";
+	public String deleteCourseById(@RequestBody Department department){
+		departmentService.saveOrUpdateDepartment(department);
+		return "Department has been successfully saved!";
 	}
 	
 }
