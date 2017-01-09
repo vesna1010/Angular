@@ -1,24 +1,24 @@
-myApp.factory("CoursesFactory", function($http, $route ){
+myApp.factory("DepartmentsFactory", function($http, $route ){
 	return{
-		getCourses: function(){
-			return $http.get('/Students/getCourses').then(function(response){
+		getDepartments: function(){
+			return $http.get('/Students/getDepartments').then(function(response){
 				return response.data;
 			 });	
 		},
-		getOneCourse:function(){
+		getOneDepartment:function(){
 			return	$http({
-				url:'/Students/getCourseById',
+				url:'/Students/getDepartmentById',
 				method:'get',
 				params: {id:$route.current.params.id}
 			}).then(function(response){
 				return response.data;
 			 });
 		},
-		saveCourse: function(course){
+		saveDepartment: function(department){
 			return $http({
-				url:'/Students/saveCourse',
+				url:'/Students/saveDepartment',
 				method:'post',
-				data:JSON.stringify(course),
+				data:JSON.stringify(department),
 				responseType:'text',
 				transformResponse: angular.identity,
 			    headers: {
@@ -26,9 +26,9 @@ myApp.factory("CoursesFactory", function($http, $route ){
 			      }
 			});
 		},
-		removeCourse:function(){
+		removeDepartment:function(){
 			return  $http({
-				url:"/Students/deleteCourseById",
+				url:"/Students/deleteDepartmentById",
 				method:'get',
 				params: {id:$route.current.params.id}
 			}).then(function(response){
