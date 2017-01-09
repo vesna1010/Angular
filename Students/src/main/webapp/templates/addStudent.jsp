@@ -42,16 +42,16 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="course" class="control-label col-sm-2 col-sm-offset-3">Course:
+		<label for="department" class="control-label col-sm-2 col-sm-offset-3">Department:
 		</label>
 		<div class="col-sm-4">
-			<select class="form-control" ng-model="student.course.id"
-				name="course" ng-required="true"
-				ng-options="course.id as course.courseName for course in courses"
+			<select class="form-control" ng-model="student.department.id"
+				name="department" ng-required="true"
+				ng-options="department.id as department.departmentName for department in departments"
 				>
 			</select> 
 			<span ng-show="studentForm.gender.$error.required "
-				class="text-danger"> Select course. </span>
+				class="text-danger"> Select department. </span>
 		</div>
 	</div>
 	<div class="form-group">
