@@ -38,8 +38,8 @@
 					<div class="collapse navbar-collapse" id="navbar">
 						<ul class="nav navbar-nav">
 							<li ng-class="{active:activeTab=='home'}"><a href="#/">Home</a></li>
-							<li ng-class="{active:activeTab=='courses'}"><a
-								href="#/listCourses">Courses</a></li>
+							<li ng-class="{active:activeTab=='departments'}"><a
+								href="#/listDepartments">Departments</a></li>
 							<li ng-class="{active:activeTab=='students'}"><a
 								href="#/listStudents">Students</a></li>
 						</ul>
