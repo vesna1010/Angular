@@ -22,8 +22,8 @@ public class Student {
 	private String gender;
 	
 	@ManyToOne
-	@JoinColumn(name = "courseId")
-	private Course course;
+	@JoinColumn(name = "departmentId")
+	private Department department;
 	
 	private int yearOfStudy;
 	
@@ -64,12 +64,12 @@ public class Student {
 		this.gender = gender;
 	}
 
-	public Course getCourse() {
-		return course;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public int getYearOfStudy() {
