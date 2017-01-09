@@ -19,24 +19,24 @@ public class DepartmentController {
 	public DepartmentService departmentService;
 	
 	@RequestMapping("/getDepartments")
-	public List<Department> getCourses() {
+	public List<Department> getDepartments() {
 		return departmentService.getDepartments();
 	}
 	
 	@RequestMapping("/getDepartmentById")
-	public Department getCourseById(@RequestParam("id") long id) {
+	public Department getDepartmentById(@RequestParam("id") long id) {
 		return departmentService.getDepartmentById(id);
 	}
 	
 	@RequestMapping("/deleteDepartmentById")
-	public List<Department> deleteCourseById(@RequestParam("id") long id) {
+	public List<Department> deleteDepartmentById(@RequestParam("id") long id) {
 		 departmentService.deleteDepartment(id);
 		 return departmentService.getDepartments();
 	}
 	
 	@RequestMapping(value="/saveDepartment", method=RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteCourseById(@RequestBody Department department){
+	public String deleteDepartmentById(@RequestBody Department department){
 		departmentService.saveOrUpdateDepartment(department);
 		return "Department has been successfully saved!";
 	}
