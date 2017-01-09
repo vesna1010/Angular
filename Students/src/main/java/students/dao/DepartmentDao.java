@@ -1,16 +1,16 @@
 package students.dao;
 
 import java.util.List;
+import students.model.Department;
 
-import students.model.Course;
+public interface DepartmentDao {
+	
+	Department getDepartmentById(long id);
 
-public interface CourseDao {
-	Course getCourseById(long id);
+	List<Department> getDepartments();
 
-	List<Course> getCourses();
+	void saveOrUpdateDepartment(Department department);
 
-	void saveOrUpdateCourse(Course course);
-
-	void deleteCourse(long id);
+	void deleteDepartment(long id);
 
 }
