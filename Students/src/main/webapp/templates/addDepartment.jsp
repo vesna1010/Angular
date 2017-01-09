@@ -1,29 +1,29 @@
 <div class="row">
-	<h3 class="text-center">Add New Course</h3>
+	<h3 class="text-center">Add New department</h3>
 	<br>
-	<form class="form-horizontal" name="courseForm">
+	<form class="form-horizontal" name="departmentForm">
 		<div class="form-group">
-			<label for="courseName"
-				class="control-label col-sm-2 col-sm-offset-3">Course name:
+			<label for="departmentName"
+				class="control-label col-sm-2 col-sm-offset-3">Department name:
 			</label>
 			<div class="col-sm-4">
-				<input class="form-control" type="text" name="courseName"
-					ng-model="course.courseName" ng-required="true" ng-minlength="5"
+				<input class="form-control" type="text" name="departmentName"
+					ng-model="department.departmentName" ng-required="true" ng-minlength="5"
 					ng-pattern="/^([a-zA-Z0-9]+\s?){5,}$/"> <span
-					ng-show="courseForm.courseName.$dirty && courseForm.courseName.$error.required"
-					class="text-danger"> Enter course name. <br> </span> <span
-					ng-show="courseForm.courseName.$dirty && courseForm.courseName.$error.minlength"
-					class="text-danger"> Course name must minimum 5 characters
+					ng-show="departmentForm.departmentName.$dirty && departmentForm.departmentName.$error.required"
+					class="text-danger"> Enter department name. <br> </span> <span
+					ng-show="departmentForm.departmentName.$dirty && departmentForm.departmentName.$error.minlength"
+					class="text-danger"> department name must minimum 5 characters
 					long. <br></span> <span
-					ng-show="courseForm.courseName.$dirty && courseForm.courseName.$error.pattern"
+					ng-show="departmentForm.departmentName.$dirty && departmentForm.departmentName.$error.pattern"
 					class="text-danger"> Enter only alphabetical letters, numbers and spaces. </span>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-4 col-sm-offset-5">
 				<button type="submit" class="btn btn-default"
-					ng-click="saveCourse(course)" ng-disabled="courseForm.$invalid">
-					Save/Update Course</button>
+					ng-click="saveDepartment(department)" ng-disabled="departmentForm.$invalid">
+					Save/Update Department</button>
 			</div>
 		</div>
 	</form>
