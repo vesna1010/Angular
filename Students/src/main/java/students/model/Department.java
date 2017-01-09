@@ -10,15 +10,15 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Course {
+public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String courseName;
+	private String departmentName;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "course", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "department", cascade=CascadeType.ALL)
 	private List<Student> listOfStudents;
 
 	public long getId() {
@@ -29,12 +29,13 @@ public class Course {
 		this.id = id;
 	}
 
-	public String getCourseName() {
-		return courseName;
+	
+	public String getDepartmentName() {
+		return departmentName;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public List<Student> getListOfStudents() {
