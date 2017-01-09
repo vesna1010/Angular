@@ -7,38 +7,38 @@ myApp.config(['$routeProvider', function($routeProvider){
 		templateUrl:'/Students/templates/home.jsp',
 		controller:'homeController'
 	})
-	.when("/listCourses", {
-		templateUrl:'/Students/templates/courses.jsp',
-		controller:'coursesController',
+	.when("/listDepartments", {
+		templateUrl:'/Students/templates/departments.jsp',
+		controller:'departmentsController',
 		resolve:{
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.getCourses();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.getDepartments();
 			}
 		}
 	})
-	.when("/removeCourseById/:id", {
-		templateUrl:'/Students/templates/courses.jsp',
-		controller:'coursesController',
+	.when("/removeDepartmentById/:id", {
+		templateUrl:'/Students/templates/departments.jsp',
+		controller:'departmentsController',
 		resolve:{
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.removeCourse();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.removeDepartment();
 			}
 		}
 	})
-	.when("/getCourseById/:id", {
-		templateUrl:'/Students/templates/addCourse.jsp',
-		controller:'oneCourseController',
+	.when("/getDepartmentById/:id", {
+		templateUrl:'/Students/templates/addDepartment.jsp',
+		controller:'oneDepartmentController',
 		resolve:{
-			oneCourse:function(CoursesFactory) {
-			return CoursesFactory.getOneCourse();	
+			oneDepartment:function(DepartmentsFactory) {
+			return DepartmentsFactory.getOneDepartment();	
 			}
 		}
 	})
-	.when("/addNewCourse", {
-		templateUrl:'/Students/templates/addCourse.jsp',
-		controller:'oneCourseController',
+	.when("/addNewDepartment", {
+		templateUrl:'/Students/templates/addDepartment.jsp',
+		controller:'oneDepartmentController',
 		resolve:{
-			oneCourse:function(){
+			oneDepartment:function(){
 				return {};
 			}
 		}
@@ -50,8 +50,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 			allStudents:function(StudentFactory){
 				return StudentFactory.getStudents();	
 			},
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.getCourses();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.getDepartments();
 			}
 		}
 	})
@@ -62,8 +62,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 			allStudents:function(StudentFactory){
 				return StudentFactory.removeStudent();	
 			},
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.getCourses();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.getDepartments();
 			}
 		}
 	})
@@ -75,8 +75,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 			oneStudent:function(StudentFactory){
 				return StudentFactory.getStudentById();
 			},
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.getCourses();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.getDepartments();
 			}
 		}
 	})
@@ -87,8 +87,8 @@ myApp.config(['$routeProvider', function($routeProvider){
 			oneStudent:function(){
 				return {};
 			},
-			allCourses: function(CoursesFactory) {
-				return CoursesFactory.getCourses();
+			allDepartments: function(DepartmentsFactory) {
+				return DepartmentsFactory.getDepartments();
 			}
 		}
 	})
@@ -101,30 +101,28 @@ myApp.controller("homeController", function($scope, $rootScope){
 	$scope.message="Home page";
 	$rootScope.activeTab='home';
 })
-.controller("coursesController", function($scope,$rootScope, allCourses){
-	$scope.courses=allCourses;
-	$rootScope.activeTab='courses';
+.controller("departmentsController", function($scope,$rootScope, allDepartments){
+	$scope.departments=allDepartments;
+	$rootScope.activeTab='departments';
 })
-.controller("oneCourseController", function(CoursesFactory, $scope,$rootScope, oneCourse, $location){
-	$scope.course=oneCourse;
-	$rootScope.activeTab='courses';
-	$scope.saveCourse=function(course){
-		CoursesFactory.saveCourse(course).success(function(data){
+.controller("oneDepartmentController", function(DepartmentsFactory, $scope,$rootScope, oneDepartment, $location){
+	$scope.department=oneDepartment;
+	$rootScope.activeTab='departments';
+	$scope.saveDepartment=function(department){
+		DepartmentsFactory.saveDepartment(department).success(function(data){
 			alert(data);
-			$location.path('/listCourses');
-			
-			
+			$location.path('/listDepartments');
 		});
 	}
 })
-.controller("studentsController", function($scope,$rootScope, allStudents, allCourses){
-	$scope.name="All Courses";
-	$scope.courses=allCourses;
+.controller("studentsController", function($scope,$rootScope, allStudents, allDepartments){
+	$scope.name="All Departments";
+	$scope.departments=allDepartments;
 	$scope.students=allStudents;
 	$rootScope.activeTab='students';
 })
-.controller("oneStudent", function(allCourses, oneStudent, $scope, $rootScope, StudentFactory, $location){
-		$scope.courses=allCourses;
+.controller("oneStudent", function(allDepartments, oneStudent, $scope, $rootScope, StudentFactory, $location){
+		$scope.departments=allDepartments;
 		$scope.student=oneStudent;
 		$rootScope.activeTab='students';
 		$scope.student.dateOfBirth=new Date($scope.student.dateOfBirth);
