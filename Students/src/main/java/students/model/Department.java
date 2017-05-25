@@ -42,8 +42,5 @@ public class Department {
 		return listOfStudents;
 	}
 
-	public void setListOfStudents(List<Student> listOfStudents) {
-		this.listOfStudents = listOfStudents;
-	}
 
 }
