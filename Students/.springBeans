@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.8.2.201610040608-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.8.4.201703310634-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -10,7 +10,6 @@
 		<config>src/main/webapp/WEB-INF/Students-servlet.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/spring/students-database.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

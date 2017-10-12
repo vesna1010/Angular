@@ -4,41 +4,46 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import students.dao.StudentDao;
 import students.model.Student;
 
 @Transactional
-@Component
 public class StudentDaoImpl implements StudentDao {
+
 	
 	@Autowired
 	private SessionFactory session;
 
-	public Session getSession() {
+	private Session getSession() {
 		return session.getCurrentSession();
 	}
 
 	@Override
-	public Student getStudent(long id) {
-		return getSession().get(Student.class, id);
+	public Student find(long studentId) {
+		return getSession().get(Student.class, studentId);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Student> getStudents() {
+	public List<Student> findAll() {
 		return getSession().createCriteria(Student.class).list();
 	}
 
 	@Override
-	public void deleteStudent(long id) {
-		getSession().delete(getStudent(id));
+	public void delete(long studentId) {
+		getSession().delete(find(studentId));
 	}
 
 	@Override
-	public void saveOrUpdateStudent(Student student) {
-		getSession().saveOrUpdate(student);
+	public void save(Student student) {
+		getSession().save(student);
 	}
-
+	
+	@Override
+	public void update(Student student) {
+		getSession().update(student);
+	}
+	
 }

@@ -11,15 +11,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Department {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String departmentName;
+	private String title;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "department", cascade=CascadeType.ALL)
-	private List<Student> listOfStudents;
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	private List<Student> students;
 
 	public long getId() {
 		return id;
@@ -29,18 +30,16 @@ public class Department {
 		this.id = id;
 	}
 
-	
-	public String getDepartmentName() {
-		return departmentName;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public List<Student> getListOfStudents() {
-		return listOfStudents;
+	public List<Student> getStudents() {
+		return students;
 	}
-
 
 }

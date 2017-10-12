@@ -11,33 +11,34 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Student {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long studentId;
-	
+	private long id;
+
 	private String studentName;
-	
+
 	private String fatherName;
-	
+
 	private String gender;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "departmentId")
 	private Department department;
-	
+
 	private int yearOfStudy;
-	
+
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfBirth;
-	
+
 	private String address;
 
-	public long getStudentId() {
-		return studentId;
+	public long getId() {
+		return id;
 	}
 
-	public void setStudentId(long studentId) {
-		this.studentId = studentId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getStudentName() {
@@ -95,4 +96,5 @@ public class Student {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 }

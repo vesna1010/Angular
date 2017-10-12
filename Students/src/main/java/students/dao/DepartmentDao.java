@@ -1,16 +1,20 @@
 package students.dao;
 
 import java.util.List;
+
 import students.model.Department;
 
 public interface DepartmentDao {
 	
-	Department getDepartmentById(long id);
+	
+	List<Department> findAll();
+	
+	Department find(long departmentId);
 
-	List<Department> getDepartments();
-
-	void saveOrUpdateDepartment(Department department);
-
-	void deleteDepartment(long id);
+	void save(Department department);
+	
+	void update(Department department);
+	
+	void delete(long departmentId);
 
 }

@@ -5,12 +5,16 @@ import java.util.List;
 import students.model.Student;
 
 public interface StudentDao {
-	Student getStudent(long id);
+	
+	
+	List<Student> findAll();
+	
+	Student find(long studentId);
 
-	List<Student> getStudents();
+	void delete(long studentId);
 
-	void deleteStudent(long id);
-
-	void saveOrUpdateStudent(Student student);
+	void save(Student student);
+	
+	void update(Student student);
 
 }

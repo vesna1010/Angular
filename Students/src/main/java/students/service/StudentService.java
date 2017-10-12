@@ -5,9 +5,16 @@ import java.util.List;
 import students.model.Student;
 
 public interface StudentService {
-Student getStudent(long id);
-List<Student> getStudents();
-void deleteStudent(long id);
-void saveOrUpdateStudent(Student student);
+
+	
+	List<Student> findAll();
+	
+	Student find(long studentId);
+
+	void delete(long studentId);
+
+	void save(Student student);
+	
+	void update(Student student);
 	
 }
