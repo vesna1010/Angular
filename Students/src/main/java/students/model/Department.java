@@ -1,5 +1,6 @@
 package students.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@SuppressWarnings("serial")
 @Entity
-public class Department {
+public class Department implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

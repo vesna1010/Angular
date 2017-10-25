@@ -7,15 +7,15 @@ import students.model.Department;
 public interface DepartmentService {
 	
 	
-	List<Department> findAll();
+	List<Department> findAllDepartments();
 	
-	Department find(long departmentId);
+	Department findDepartmentById(Long id);
 
-	void save(Department department);
+	void saveDepartment(Department department);
 	
-	void update(Department department);
+	void updateDepartment(Department department);
 	
-	void delete(long departmentId);
+	void deleteDepartmentById(Long id);
 
 }
 

@@ -11,15 +11,25 @@
 
 	<context:component-scan base-package="students"></context:component-scan>
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="packagesToScan" value="students.model"></property>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="hibernateProperties">
+		<property name="packagesToScan" value="students.model"></property>
+		<property name="jpaProperties">
 			<map>
-				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"></entry>
 				<entry key="hibernate.hbm2ddl.auto" value="update"></entry>
 			</map>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+			</bean>
 		</property>
 	</bean>
 
@@ -32,13 +42,6 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="vesna"></property>
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-	</bean>
-
-	<tx:annotation-driven />
-
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
 	<mvc:resources location="/resource/" mapping="/resources/**"></mvc:resources>

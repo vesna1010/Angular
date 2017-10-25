@@ -1,41 +1,42 @@
 package students.service.imp;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import students.dao.DepartmentDao;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 import students.model.*;
+import students.repository.DepartmentRepository;
 import students.service.DepartmentService;
 
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
 	
-	@Autowired
-	private DepartmentDao departmentDao;
+	@Inject
+	private DepartmentRepository departmentRepository;
 
 	@Override
-	public Department find(long departmentId) {
-		return departmentDao.find(departmentId);
+	public List<Department> findAllDepartments() {
+		return departmentRepository.findAll();
 	}
 
 	@Override
-	public List<Department> findAll() {
-		return departmentDao.findAll();
+	public Department findDepartmentById(Long id) {
+		return departmentRepository.findOne(id);
 	}
 
 	@Override
-	public void save(Department department) {
-		departmentDao.save(department);
-	}
-	
-	@Override
-	public void update(Department department) {
-		departmentDao.update(department);
+	public void saveDepartment(Department department) {
+		departmentRepository.save(department);
 	}
 
 	@Override
-	public void delete(long departmentId) {
-		departmentDao.delete(departmentId);
+	public void updateDepartment(Department department) {
+		departmentRepository.update(department);
+	}
+
+	@Override
+	public void deleteDepartmentById(Long id) {
+		departmentRepository.deleteById(id);
 	}
 
 }

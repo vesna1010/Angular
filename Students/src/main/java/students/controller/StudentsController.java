@@ -20,27 +20,27 @@ public class StudentsController {
 	@RequestMapping(value = "/findAllStudents", method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Student> findAllStudents() {
-		return studentService.findAll();
+		return studentService.findAllStudents();
 	}
 	
 	@RequestMapping(value = "/findStudent/{id}", method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Student findStudent(@PathVariable long id) {
-		return studentService.find(id);
+	public Student findStudent(@PathVariable Long id) {
+		return studentService.findStudentById(id);
 	}
 	
 	@RequestMapping(value = "/deleteStudent/{id}", method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Student> deleteStudent(@PathVariable long id) {
-		studentService.delete(id);
+	public List<Student> deleteStudent(@PathVariable Long id) {
+		studentService.deleteStudentById(id);
 		
-		return studentService.findAll();
+		return studentService.findAllStudents();
 	}
 	
 	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String saveOrUpdateStudent(@RequestBody Student student) {
-		studentService.save(student);
+		studentService.saveStudent(student);
 		
 		return "Student has been successfully saved!";
 	}
@@ -48,7 +48,7 @@ public class StudentsController {
 	@RequestMapping(value = "/updateStudent", method = RequestMethod.PUT, 
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String updateStudent(@RequestBody Student student) {
-		studentService.update(student);
+		studentService.updateStudent(student);
 		
 		return "Student has been successfully updated!";
 	}

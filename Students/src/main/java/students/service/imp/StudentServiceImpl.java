@@ -1,41 +1,42 @@
 package students.service.imp;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import students.dao.StudentDao;
+import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 import students.model.Student;
+import students.repository.StudentRepository;
 import students.service.StudentService;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
 	
-	@Autowired
-	private StudentDao studentDao;
+	@Inject
+	private StudentRepository studentRepository;
 
 	@Override
-	public Student find(long studentId) {
-		return studentDao.find(studentId);
+	public List<Student> findAllStudents() {
+		return studentRepository.findAll();
 	}
 
 	@Override
-	public List<Student> findAll() {
-		return studentDao.findAll();
+	public Student findStudentById(Long id) {
+		return studentRepository.findOne(id);
 	}
 
 	@Override
-	public void delete(long studentId) {
-		studentDao.delete(studentId);
+	public void deleteStudentById(Long id) {
+		studentRepository.deleteById(id);
 	}
 
 	@Override
-	public void save(Student student) {
-		studentDao.save(student);
+	public void saveStudent(Student student) {
+		studentRepository.save(student);
 	}
 
 	@Override
-	public void update(Student student) {
-		studentDao.update(student);
+	public void updateStudent(Student student) {
+		studentRepository.update(student);
 	}
-
+	
 }

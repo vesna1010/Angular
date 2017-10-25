@@ -7,14 +7,14 @@ import students.model.Student;
 public interface StudentService {
 
 	
-	List<Student> findAll();
+	List<Student> findAllStudents();
 	
-	Student find(long studentId);
+	Student findStudentById(Long id);
 
-	void delete(long studentId);
+	void deleteStudentById(Long id);
 
-	void save(Student student);
+	void saveStudent(Student student);
 	
-	void update(Student student);
+	void updateStudent(Student student);
 	
 }

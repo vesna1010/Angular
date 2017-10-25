@@ -1,5 +1,6 @@
 package students.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
+@SuppressWarnings("serial")
 @Entity
-public class Student {
+public class Student implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	private String studentName;
 
@@ -33,11 +35,11 @@ public class Student {
 
 	private String address;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
