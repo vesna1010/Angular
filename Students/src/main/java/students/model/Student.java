@@ -14,25 +14,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Student implements Serializable {
 
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String studentName;
-
 	private String fatherName;
-
 	private String gender;
-
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "departmentId")
 	private Department department;
-
 	private int yearOfStudy;
-
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfBirth;
-
 	private String address;
 
 	public Long getId() {
