@@ -14,13 +14,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Department implements Serializable {
 
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
 	private String title;
-
-	@JsonIgnore
+	@JsonIgnore 
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private List<Student> students;
 
