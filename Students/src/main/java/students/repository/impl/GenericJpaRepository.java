@@ -12,7 +12,6 @@ public class GenericJpaRepository<ID extends Serializable, E extends Serializabl
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-
 	private Class<E> entityClass;
 
 	public void setEntityClass(Class<E> entityClass) {
