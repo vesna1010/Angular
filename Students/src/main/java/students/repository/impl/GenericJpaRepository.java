@@ -2,12 +2,9 @@ package students.repository.impl;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import students.repository.GenericRepository;
 
 @Transactional
