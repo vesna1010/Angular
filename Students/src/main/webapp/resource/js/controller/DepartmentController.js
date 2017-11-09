@@ -1,6 +1,5 @@
 app.controller('DepartmentsController', 
 	       ['$scope', '$rootScope', 'departments', function($scope, $rootScope, departments) {
-		       
 		       $rootScope.activeTab = 'departments';
 		       $scope.departments = departments;
 	       }]);
@@ -8,7 +7,6 @@ app.controller('DepartmentsController',
 app.controller("OneDepartmentController", 
 	       ['$scope', '$rootScope', '$location', 'DepartmentFactory', 'department',
 		function($scope, $rootScope, $location, DepartmentFactory, department) {
-			
 			$rootScope.activeTab = 'departments';
 			$scope.department = department;
 			
