@@ -24,12 +24,11 @@
 		<property name="jpaProperties">
 			<map>
 				<entry key="hibernate.hbm2ddl.auto" value="update"></entry>
+				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			</map>
 		</property>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
-			</bean>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
 		</property>
 	</bean>
 
@@ -47,3 +46,4 @@
 	<mvc:resources location="/resource/" mapping="/resources/**"></mvc:resources>
 
 </beans>
+
