@@ -24,7 +24,7 @@
 		<property name="jpaProperties">
 			<map>
 				<entry key="hibernate.hbm2ddl.auto" value="update"></entry>
-				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			</map>
 		</property>
 		<property name="jpaVendorAdapter">
