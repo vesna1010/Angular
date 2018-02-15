@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import students.repository.GenericRepository;
 
 @Transactional
-public class GenericJpaRepository<ID extends Serializable, E extends Serializable> implements GenericRepository<ID, E> {
+public abstract class GenericJpaRepository<ID extends Serializable, E extends Serializable> implements GenericRepository<ID, E> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
