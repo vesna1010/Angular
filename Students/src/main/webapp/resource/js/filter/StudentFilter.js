@@ -1,18 +1,15 @@
+var app = angular.module('app');
+
 app.filter("filterDepartment", function() {
 
-	return function(students, name) {
-		var filteredStudents = [];
-		
-		if (name == "All Departments") {
-			return students;
+	return function(students, departmentId) {
+		if (departmentId > 0) {
+			students = students.filter(function(student) {
+				return (student.department.id == departmentId);
+			});
 		}
-		
-		angular.forEach(students, function(student) {
-			if (student.department.title == name) {
-				filteredStudents.push(student);
-			}
-		});
-		
-		return filteredStudents;
+
+		return students;
 	}
 });
+
