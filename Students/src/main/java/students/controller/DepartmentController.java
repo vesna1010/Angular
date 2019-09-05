@@ -12,45 +12,49 @@ import students.service.DepartmentService;
 import students.model.Department;
 
 @RestController
+@RequestMapping("/departments")
 public class DepartmentController {
 
 	@Autowired
 	public DepartmentService departmentService;
 
-	@RequestMapping(value = "/findAllDepartments", method = RequestMethod.GET,
+	@RequestMapping(method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Department> findAllDepartments() {
 		return departmentService.findAllDepartments();
 	}
 
-	@RequestMapping(value = "/findDepartment/{id}", method = RequestMethod.GET,
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Department findDepartment(@PathVariable Long id) {
+	public Department findDepartmentById(@PathVariable Long id) {
 		return departmentService.findDepartmentById(id);
 	}
 
-	@RequestMapping(value = "/deleteDepartment/{id}", method = RequestMethod.DELETE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Department> deleteStudent(@PathVariable Long id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public String deleteDepartmentById(@PathVariable Long id) {
 		departmentService.deleteDepartmentById(id);
-		
-		return departmentService.findAllDepartments();
+
+		return "Department has been successfully deleted!";
 	}
 
-	@RequestMapping(value = "/saveDepartment", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
 	public String saveDepartment(@RequestBody Department department) {
 		departmentService.saveDepartment(department);
 
 		return "Department has been successfully saved!";
 	}
 
-	@RequestMapping(value = "/updateDepartment", method = RequestMethod.PUT, 
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String updateDepartment(@RequestBody Department department) {
-		departmentService.updateDepartment(department);
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public String updateDepartment(@RequestBody Department department, @PathVariable Long id) {
+		departmentService.updateDepartment(department, id);
 
 		return "Department has been successfully updated!";
 	}
 
 }
+
