@@ -4,53 +4,52 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.Query;
 import students.repository.GenericRepository;
 
-@Transactional
-public abstract class GenericJpaRepository<ID extends Serializable, E extends Serializable> implements GenericRepository<ID, E> {
+public abstract class GenericJpaRepository<T extends Serializable, ID extends Serializable>
+		implements GenericRepository<T, ID> {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-	private Class<E> entityClass;
+	private Class<T> entityClass;
 
-	public void setEntityClass(Class<E> entityClass) {
+	protected GenericJpaRepository(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<E> findAll() {
-		return entityManager.createQuery("from " + entityClass.getName()).getResultList();
-	}
+	public List<T> findAll() {
+		Query query = entityManager.createQuery("from " + entityClass.getName());
 
-	@Override
-	public E findOne(ID id) {
-		return entityManager.find(entityClass, id);
-	}
-
-	@Override
-	public void save(E e) {
-		entityManager.persist(e);
-	}
-
-	@Override
-	public void update(E e) {
-		entityManager.merge(e);
+		return query.getResultList();
 	}
 
 	@Override
 	public void deleteById(ID id) {
-		try {
-			delete(findOne(id));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		entityManager.remove(findOne(id));
 	}
 
-	private void delete(E e) throws Exception {
-		entityManager.remove(e);
+	@Override
+	public boolean existsById(ID id) {
+		return (findOne(id) != null);
+	}
+
+	@Override
+	public T findOne(ID id) {
+		return entityManager.find(entityClass, id);
+	}
+
+	@Override
+	public void save(T e) {
+		entityManager.persist(e);
+	}
+
+	@Override
+	public void update(T e) {
+		entityManager.merge(e);
 	}
 
 }
+
