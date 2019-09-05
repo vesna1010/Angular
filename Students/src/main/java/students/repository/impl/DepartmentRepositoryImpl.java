@@ -5,10 +5,10 @@ import students.model.Department;
 import students.repository.DepartmentRepository;
 
 @Repository
-public class DepartmentRepositoryImpl extends GenericJpaRepository<Long, Department> implements DepartmentRepository {
+public class DepartmentRepositoryImpl extends GenericJpaRepository<Department, Long> implements DepartmentRepository {
 
 	public DepartmentRepositoryImpl() {
-		setEntityClass(Department.class);
+		super(Department.class);
 	}
 
 }
