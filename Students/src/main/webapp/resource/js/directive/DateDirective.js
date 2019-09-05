@@ -1,3 +1,5 @@
+var app = angular.module('app');
+
 app.directive("myDate", function() {
 	return {
 		template : '{{date | date:"dd/MM/yyyy"}}',
@@ -5,9 +7,10 @@ app.directive("myDate", function() {
 		scope : {
 			date : '@'
 		},
-		link : function($scope) {
-			$scope.date = new Date();
+		link : function(scope) {
+			scope.date = new Date();
 		}
 	}
 });
+
 
