@@ -8,23 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import students.converter.DateToStringConverter;
+import students.converter.StringToDateConverter;
 
-@SuppressWarnings("serial")
 @Entity
 public class Student implements Serializable {
 
-	@Id 
+	private static final long serialVersionUID = 1L;
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String studentName;
+	private String fullName;
 	private String fatherName;
 	private String gender;
-	@ManyToOne 
+	@ManyToOne
 	@JoinColumn(name = "departmentId")
 	private Department department;
 	private int yearOfStudy;
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonDeserialize(converter = StringToDateConverter.class)
+	@JsonSerialize(converter = DateToStringConverter.class)
 	private Date dateOfBirth;
 	private String address;
 
@@ -36,12 +40,12 @@ public class Student implements Serializable {
 		this.id = id;
 	}
 
-	public String getStudentName() {
-		return studentName;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getFatherName() {
@@ -90,6 +94,31 @@ public class Student implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }
