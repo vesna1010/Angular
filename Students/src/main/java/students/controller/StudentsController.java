@@ -12,45 +12,48 @@ import students.model.Student;
 import students.service.StudentService;
 
 @RestController
+@RequestMapping("/students")
 public class StudentsController {
 
 	@Autowired
 	public StudentService studentService;
 
-	@RequestMapping(value = "/findAllStudents", method = RequestMethod.GET,
+	@RequestMapping(method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Student> findAllStudents() {
 		return studentService.findAllStudents();
 	}
-	
-	@RequestMapping(value = "/findStudent/{id}", method = RequestMethod.GET,
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Student findStudent(@PathVariable Long id) {
+	public Student findStudentById(@PathVariable Long id) {
 		return studentService.findStudentById(id);
 	}
-	
-	@RequestMapping(value = "/deleteStudent/{id}", method = RequestMethod.DELETE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Student> deleteStudent(@PathVariable Long id) {
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public String deleteStudentById(@PathVariable Long id) {
 		studentService.deleteStudentById(id);
-		
-		return studentService.findAllStudents();
+
+		return "Student has been successfully deleted!";
 	}
-	
-	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String saveOrUpdateStudent(@RequestBody Student student) {
+
+	@RequestMapping(method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public String saveStudent(@RequestBody Student student) {
 		studentService.saveStudent(student);
-		
+
 		return "Student has been successfully saved!";
 	}
-	
-	@RequestMapping(value = "/updateStudent", method = RequestMethod.PUT, 
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String updateStudent(@RequestBody Student student) {
-		studentService.updateStudent(student);
-		
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public String updateStudent(@RequestBody Student student, @PathVariable Long id) {
+		studentService.updateStudent(student, id);
+
 		return "Student has been successfully updated!";
 	}
-	
+
 }
