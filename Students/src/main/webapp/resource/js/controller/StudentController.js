@@ -1,28 +1,60 @@
-app.controller('StudentsController', 
-	       [ '$scope', '$rootScope', 'students', 'departments',
-		function($scope, $rootScope, students, departments) {
+var app = angular.module('app');
+
+app.controller('StudentsPageController', [
+		'$scope',
+		'$window',
+		'$rootScope',
+		'students',
+		'departments',
+		'StudentFactory',
+		function($scope, $window, $rootScope, students, departments,
+				StudentFactory) {
+
 			$rootScope.activeTab = 'students';
 			$scope.students = students;
 			$scope.departments = departments;
-			$scope.name = "All Departments";
-		}]);
 
-app.controller("OneStudentController", 
-	       [ '$scope', '$rootScope', '$location', 'StudentFactory', 'student', 'departments', 
-		function($scope, $rootScope, $location, StudentFactory, student, departments) {
+			$scope.deleteStudentById = function(id) {
+				var promise = StudentFactory.deleteStudentById(id);
+
+				promise.then(function(response) {
+					$window.location.reload();
+				});
+			}
+
+			$scope.findStudentById = function(id) {
+				$window.location.href = "#/students/form/" + id;
+			}
+		} ]);
+
+app.controller('StudentsFormController', [
+		'$scope',
+		'$window',
+		'$rootScope',
+		'student',
+		'departments',
+		'StudentFactory',
+		function($scope, $window, $rootScope, student, departments,
+				StudentFactory) {
+
 			$rootScope.activeTab = 'students';
 			$scope.student = student;
 			$scope.departments = departments;
-			
-			$scope.saveOrUpdateStudent = function(student) {
-				var func = student.id == undefined ? StudentFactory.saveStudent : StudentFactory.updateStudent;
-				func(student).success(function(message) {
-					showMessage(message);
+
+			$scope.saveStudent = function(student) {
+				var promise = StudentFactory.saveStudent(student);
+
+				promise.then(function(response) {
+					$window.location.reload();
 				});
 			}
-			
-			function showMessage(message) {
-				alert(message);
-				$location.path("/students");
+
+			$scope.updateStudent = function(student, id) {
+				var promise = StudentFactory.updateStudent(student, id);
+
+				promise.then(function(response) {
+					$window.location.href = "#/students/form";
+				});
 			}
-		}]);
+		} ]);
+
