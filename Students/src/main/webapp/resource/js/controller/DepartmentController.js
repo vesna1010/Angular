@@ -1,31 +1,54 @@
-app.controller('DepartmentsController', 
-	       ['$scope', '$rootScope', 'departments', function($scope, $rootScope, departments) {
-		       $rootScope.activeTab = 'departments';
-		       $scope.departments = departments;
-	       }]);
+var app = angular.module('app');
 
-app.controller("OneDepartmentController", 
-	       ['$scope', '$rootScope', '$location', 'DepartmentFactory', 'department',
-		function($scope, $rootScope, $location, DepartmentFactory, department) {
+app.controller('DepartmentsPageController', [ '$scope', '$window',
+		'$rootScope', 'departments', 'DepartmentFactory',
+		function($scope, $window, $rootScope, departments, DepartmentFactory) {
+
 			$rootScope.activeTab = 'departments';
-			$scope.department = department;
-			
-			$scope.saveOrUpdateDepartment = function(department) {
-				var func = department.id == undefined ? DepartmentFactory.saveDepartment :
-				DepartmentFactory.updateDepartment;
-				
-				func(department).success(function(message) {
-					showMessage(message);
+			$scope.departments = departments;
+
+			$scope.deleteDepartmentById = function(id) {
+				var promise = DepartmentFactory.deleteDepartmentById(id);
+
+				promise.then(function(response) {
+					$window.location.reload();
 				});
 			}
-			
-			function showMessage(message) {
-				alert(message);
-				$location.path("/departments");
+
+			$scope.findDepartmentById = function(id) {
+				$window.location.href = "#/departments/form/" + id;
 			}
-		}]);
+		} ]);
 
+app.controller('DepartmentsFormController', [
+		'$scope',
+		'$window',
+		'$rootScope',
+		'department',
+		'DepartmentFactory',
+		function($scope, $window, $rootScope, department, DepartmentFactory) {
 
+			$rootScope.activeTab = 'departments';
+			$scope.department = department;
+
+			$scope.saveDepartment = function(department) {
+				var promise = DepartmentFactory.saveDepartment(department);
+
+				promise.then(function(response) {
+					$window.location.reload();
+				});
+			}
+
+			$scope.updateDepartment = function(department, id) {
+				var promise = DepartmentFactory
+						.updateDepartment(department, id);
+
+				promise.then(function(response) {
+					$window.location.href = "#/departments/form";
+				});
+			}
+
+		} ]);
 
 
 
