@@ -1,35 +1,34 @@
 <div class="row">
-	<h3 class="text-center">Add New department</h3>
+	<h3 class="text-center">DEPARTMENT&nbsp;FORM</h3>
 	<br>
-	<form class="form-horizontal" name="departmentForm">
-		<input type="hidden" ng-model="department.id">
+
+	<form class="form-horizontal" name="form">
+
+		<input type="hidden" data-ng-model="department.id">
+
 		<div class="form-group">
-			<label for="title"
-				class="control-label col-sm-2 col-sm-offset-3">Department
-				name: </label>
+			<label for="title" class="control-label col-sm-2 col-sm-offset-3">TITLE</label>
 			<div class="col-sm-4">
 				<input class="form-control" type="text" name="title"
-					ng-model="department.title" ng-required="true" ng-minlength="5"
-					ng-pattern="/^([a-zA-Z0-9]+(\s)?)+$/"> <span
-					ng-show="departmentForm.title.$dirty && departmentForm.title.$error.required"
-					class="text-danger"> Enter department name. <br>
-				</span> <span
-					ng-show="departmentForm.title.$dirty && departmentForm.title.$error.minlength"
-					class="text-danger"> Department name must minimum 5
-					characters long. <br>
-				</span> <span
-					ng-show="departmentForm.title.$dirty && departmentForm.title.$error.pattern"
-					class="text-danger"> Enter only alphabetical letters,
-					numbers and spaces. </span>
+					data-ng-model="department.title" data-ng-required="true"
+					data-ng-pattern="/^([a-zA-Z0-9]+(\s)?){5,}$/">
+				<div data-ng-show="form.title.$dirty && form.title.$invalid"
+					class="text-danger">
+					<span data-ng-show="form.title.$error.required">Please&nbsp;enter&nbsp;a&nbsp;title</span>
+					<span data-ng-show="form.title.$error.pattern">This&nbsp;is&nbsp;not&nbsp;a&nbsp;valid&nbsp;title</span>
+				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-4 col-sm-offset-5">
-				<button type="submit" class="btn btn-default"
-					ng-click="saveOrUpdateDepartment(department)"
-					ng-disabled="departmentForm.$invalid">Save/Update
-					Department</button>
+				<button class="btn btn-default"
+					data-ng-click="saveDepartment(department)"
+					data-ng-disabled="form.$invalid" data-ng-hide="department.id">Save</button>
+				<button class="btn btn-default"
+					data-ng-click="updateDepartment(department, department.id)"
+					data-ng-disabled="form.$invalid" data-ng-show="department.id">Update</button>
 			</div>
 		</div>
 	</form>
 </div>
+
