@@ -5,10 +5,11 @@ import org.springframework.stereotype.Repository;
 import students.model.Student;
 
 @Repository
-public class StudentRepositoryImpl extends GenericJpaRepository<Long, Student> implements StudentRepository{
+public class StudentRepositoryImpl extends GenericJpaRepository<Student, Long> implements StudentRepository {
 
 	public StudentRepositoryImpl() {
-		setEntityClass(Student.class);
+		super(Student.class);
 	}
 
 }
+
