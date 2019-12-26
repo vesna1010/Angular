@@ -2,8 +2,8 @@ var app = angular.module('app');
 
 app.directive("myDate", function() {
 	return {
-		template : '{{date | date:"dd/MM/yyyy"}}',
-		restrict : 'EA',
+		template : '{{date | date:"dd.MM.yyyy"}}',
+		restrict : 'E',
 		scope : {
 			date : '@'
 		},
@@ -12,5 +12,6 @@ app.directive("myDate", function() {
 		}
 	}
 });
+
 
 
