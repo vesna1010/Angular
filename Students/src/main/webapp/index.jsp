@@ -1,24 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html data-ng-app="app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	src="http://localhost:8080/Students/resources/js/angular.min.js"></script>
 <script type="text/javascript"
-	src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+	src="http://localhost:8080/Students/resources/js/angular-route.min.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/Students/resources/js/module.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8080/Students/resources/js/config/RouteConfig.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/Students/resources/js/controller/DepartmentController.js"></script>
+	src="http://localhost:8080/Students/resources/js/controller/DepartmentsFormController.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/Students/resources/js/controller/StudentController.js"></script>
+	src="http://localhost:8080/Students/resources/js/controller/DepartmentsPageController.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8080/Students/resources/js/controller/HomeController.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/Students/resources/js/controller/StudentsFormController.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/Students/resources/js/controller/StudentsPageController.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8080/Students/resources/js/directive/DateDirective.js"></script>
 <script type="text/javascript"
@@ -35,7 +39,7 @@
 	href="http://localhost:8080/Students/resources/css/style.css">
 </head>
 <body>
-<div class="containter">
+	<div class="containter">
 		<div class="row">
 			<div class="col-sm-12">
 
