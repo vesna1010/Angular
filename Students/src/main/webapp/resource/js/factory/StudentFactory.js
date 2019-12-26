@@ -24,19 +24,19 @@ app.factory('StudentFactory', function($http) {
 	
 	function saveStudent(student) {
 		return $http.post('students', student).then(function(response){
-			alert(response.data);
+			return response.data;
 		});		
 	}
 	
 	function updateStudent(student, id) {
 		return $http.put('students/' + id, student).then(function(response){
-			alert(response.data);
+			return response.data;
 		});		
 	}
 	
 	function deleteStudentById(id) {
 		return $http.delete('students/'+ id).then(function(response){
-			alert(response.data);
+			return response.data;
 		});		
 	}
 	
