@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import students.converter.DateToStringConverter;
 import students.converter.StringToDateConverter;
 
 @Entity
@@ -28,7 +26,6 @@ public class Student implements Serializable {
 	private Department department;
 	private int yearOfStudy;
 	@JsonDeserialize(converter = StringToDateConverter.class)
-	@JsonSerialize(converter = DateToStringConverter.class)
 	private Date dateOfBirth;
 	private String address;
 
