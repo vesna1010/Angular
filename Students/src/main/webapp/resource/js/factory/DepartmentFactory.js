@@ -24,19 +24,19 @@ app.factory('DepartmentFactory', function($http) {
 		
 	function saveDepartment(department) {
 		return $http.post('departments', department).then(function(response){
-			alert(response.data);
+			return response.data;
 		});	
 	}
 	
 	function updateDepartment(department, id) {
 		return $http.put('departments/' + id, department).then(function(response){
-			alert(response.data);
+			return response.data;
 		});			
 	}
 	
 	function deleteDepartmentById(id) {
 		return $http.delete('departments/'+id).then(function(response){
-			alert(response.data);
+			return response.data;
 		});		
 	}
 	
